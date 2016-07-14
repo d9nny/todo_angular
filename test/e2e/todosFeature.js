@@ -28,4 +28,5 @@ describe('Todos tracker', function() {
 		var todo = $$('#todos li p').last().getText();
 		expect(todo).toEqual('Todo 2: Completed');
 	});
+
 });
