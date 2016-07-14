@@ -1,4 +1,23 @@
 describe('Todos tracker', function() {
+
+	var mock = require('protractor-http-mock');
+
+	beforeEach(function() {
+		mock([{
+			request: {
+				path: 'http://quiet-beach-24792.herokuapp.com/todos.json',
+				method: 'GET'
+			},
+			response: {
+				data: [{text: 'Todo 1', completed: true}, {text: 'Todo 2', completed: false}]
+			}
+		}]);
+	});
+
+	afterEach(function(){
+	  mock.teardown();
+	});
+
 	it('has several todos', function() {
 		browser.get('/');
 		var todos = $$('#todos p');

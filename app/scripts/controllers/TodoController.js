@@ -1,7 +1,9 @@
-todoApp.controller('TodoController', ['TodoFactory', function(TodoFactory) {
+todoApp.controller('TodoController', ['TodoFactory', 'TodoService', function(TodoFactory, TodoService) {
 	var self = this;
 
-	self.todos = [new TodoFactory('Todo 1', true), new TodoFactory('Todo 2', false)];
+	TodoService.getAll().then(function(todos) {
+		self.todos = todos;
+	});
 
 	self.addTodo = function(text) {
 		self.todos.push(new TodoFactory(text));

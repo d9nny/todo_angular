@@ -1,15 +1,20 @@
 describe('TodoController', function() {
 	beforeEach(module('TodoApp'));
 
-	var ctrl, TodoFactory, todo1, todo2, todos;
+	var ctrl, httpBackend, TodoFactory, todo1, todo2, todos;
 
-	beforeEach(inject(function($controller, _TodoFactory_) {
+	beforeEach(inject(function($httpBackend, $controller, _TodoFactory_) {
 		ctrl = $controller('TodoController');
 		TodoFactory = _TodoFactory_;
+		httpBackend = $httpBackend;
 		todo1 = new TodoFactory("Todo 1", true);
 		todo2 = new TodoFactory("Todo 2", false);
 		todos = [todo1, todo2];
-	}))
+		httpBackend.expectGET("http://quiet-beach-24792.herokuapp.com/todos.json").respond(todos);
+		httpBackend.flush();
+	}));
+
+
 
 	it('initializes with multiple todos', function() {
 		expect(ctrl.todos).toEqual(todos);
