@@ -12,4 +12,9 @@ todoApp.controller('TodoController', ['TodoFactory', 'TodoService', function(Tod
 	self.deleteTodo = function(index) {
 		self.todos.splice(index, 1);
 	};
+
+	self.changeFilter = function(boolean) {
+		self.filter = boolean;
+	};
+
 }]);

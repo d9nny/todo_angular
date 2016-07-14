@@ -32,5 +32,5 @@ $ npm run start
 $ npm run webdriver-manager start
 ```
 ```sh
-npm run protractor test/protractor.conf.js
+$ npm run protractor test/protractor.conf.js
 ```

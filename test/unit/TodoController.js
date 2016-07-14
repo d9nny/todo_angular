@@ -14,8 +14,6 @@ describe('TodoController', function() {
 		httpBackend.flush();
 	}));
 
-
-
 	it('initializes with multiple todos', function() {
 		expect(ctrl.todos).toEqual(todos);
 	});
@@ -29,4 +27,13 @@ describe('TodoController', function() {
 		ctrl.deleteTodo(0);
 		expect(ctrl.todos[0]).toEqual(todos[1]);
 	});	
+
+	it('filter is default to all', function() {
+		expect(ctrl.filter).toEqual();
+	})
+
+	it('changes the filter', function() {
+		ctrl.changeFilter(true);
+		expect(ctrl.filter).toEqual(true);
+	})
 });
