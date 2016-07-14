@@ -5,7 +5,8 @@
 		<script src="bower_components/angular/angular.js"></script>
 		<script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-
+  	<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  	<link rel="stylesheet" href="app/styles/app.css">
 		<script src="app/scripts/app.js"></script>
 		<script src="app/scripts/controllers/TodoController.js"></script>
 		<script src="app/scripts/factories/todoFactory.js"></script>
@@ -13,18 +14,43 @@
 		<title>Todo App</title>
 	</head>
 	<body>
-		<div id='todos' ng-controller="TodoController as ctrl">
-			<input id='new-todo-name' placeholder='Title' ng-model='todoText'>
-			<button id='add-todo' class='button' ng-click='ctrl.addTodo(todoText)'>Add</button>
-			<br/><br/>
-			<button class='button' id='complete' ng-click="ctrl.changeFilter(true)">Complete</button>
-			<button class='button'ng-click="ctrl.changeFilter()">All</button>
-			<button class='button' id='active' ng-click="ctrl.changeFilter(false)">Active</button>
-			<li ng-repeat='todo in ctrl.todos | filter: {completed: ctrl.filter}'>
-				<p>{{todo.text}}: {{todo.completed ? 'Completed' : 'Not Completed'}}</p>
-				<button ng-if='!todo.completed'class='button' id='complete-todo' ng-click='todo.complete()'>Complete</button>
-				<button class='button' id='delete-todo' ng-click='ctrl.deleteTodo($index)'>Delete</button>
-			</li>
+		<div class='container text-center' id='todos' ng-controller="TodoController as ctrl">
+
+			<header>
+				<h1 class='text-center'>Todo</h1>
+			</header>
+
+			<div class="row">
+			  <div class="col-lg-12">
+			    <div class="input-group">
+			      <input type="text" class="form-control" id='new-todo-name' placeholder='Title' ng-model='todoText'>
+			     	<span class="input-group-btn">
+			        <button class="btn btn-success" id='add-todo' ng-click='ctrl.addTodo(todoText)' type="button">Add</button>
+			      </span>
+			    </div><!-- /input-group -->
+			  </div><!-- /.col-lg-6 -->
+			</div><!-- /.row -->
+
+			<ul class="nav nav-tabs">
+			  <li role="presentation" ng-click="ctrl.changeFilter()"><a href="#">All</a></li>
+			  <li role="presentation" id='complete' ng-click="ctrl.changeFilter(true)"><a href="#">Completed</a></li>
+			  <li role="presentation" id='active' ng-click="ctrl.changeFilter(false)"><a href="#">Active</a></li>
+			  <div>
+				  <h3>{{results.length}}</h3>
+				</div>	
+			</ul>
+
+			<ul id='todo' ng-repeat='todo in ctrl.todos | filter: {completed: ctrl.filter} as results'>
+				<div class='row'>
+					<div class='col-md-8'>
+						<h4>{{todo.text}}</h4>
+						<h6>{{todo.completed ? 'Completed' : 'Not Completed'}}</h6>
+					</div>
+					<div class='col-md-4'>
+						<button ng-if='!todo.completed'class='btn' id='complete-todo' ng-click='todo.complete()'>Complete</button>
+						<button class='btn btn-danger' id='delete-todo' ng-click='ctrl.deleteTodo($index)'>Delete</button>
+					</div>
+			</ul>
 		</div>
 	</body>
 </html>
