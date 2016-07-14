@@ -1,0 +1,27 @@
+{
+  "name": "new_angular",
+  "description": "",
+  "main": "index.js",
+  "authors": [
+    "danwheeler <da-wheeler@hotmail.co.uk>"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test"
+  ],
+  "dependencies": {
+    "jquery": "^3.1.0",
+    "angular": "^1.5.7",
+    "bootstrap": "^3.3.6"
+  },
+  "resolutions": {
+    "jquery": "1.9.1 - 2"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.5.7"
+  }
+}

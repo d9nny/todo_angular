@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en" ng-app="TodoApp">
+	<head>
+		<meta charset="utf-8">
+		<script src="bower_components/angular/angular.js"></script>
+		<script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
+		<script src="app/scripts/app.js"></script>
+		<script src="app/scripts/controllers/TodoController.js"></script>
+		<title>Todo App</title>
+	</head>
+	<body>
+		<div id='todos' ng-controller="TodoController as ctrl">
+			<input id='new-todo-name' placeholder='Title' ng-model='todoText'>
+			<button id='add-todo' class='button' ng-click='ctrl.addTodo(todoText)'>Add</button>
+			<br/><br/>
+
+			<li ng-repeat='todo in ctrl.todos'>
+				<p>{{todo.text}}: {{todo.completed ? 'Completed' : 'Not Completed'}}</p>
+				<button ng-if='!todo.completed'class='button' id='complete-todo' ng-click='ctrl.completeTodo($index)'>Complete</button>
+				<button class='button' id='delete-todo' ng-click='ctrl.deleteTodo($index)'>Delete</button>
+			</li>
+		</div>
+	</body>
+</html>
